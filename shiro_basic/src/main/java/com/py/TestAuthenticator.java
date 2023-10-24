@@ -26,7 +26,7 @@ public class TestAuthenticator {
         Subject subject = SecurityUtils.getSubject();
 
         //5.创建令牌
-        UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "1231");
         try {
             System.out.println("认证状态：" + subject.isAuthenticated());
             subject.login(token);//用户认证
