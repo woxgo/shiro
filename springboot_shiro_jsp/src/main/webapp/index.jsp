@@ -12,6 +12,13 @@
 <body>
 <%--    受限资源--%>
 <h1>系统主页</h1>
+<h1><shiro:principal/></h1>
+<shiro:authenticated>
+    认证之后展示的内容<br>
+</shiro:authenticated>
+<shiro:notAuthenticated>
+    没有认证展示的内容<br>
+</shiro:notAuthenticated>
 <a href="${pageContext.request.contextPath}/user/logout">退出登录</a>
 <ul>
 
