@@ -3,6 +3,7 @@ package com.py.shiro.realms;
 import com.py.entity.Perms;
 import com.py.entity.User;
 import com.py.service.UserService;
+import com.py.shiro.salt.MyByteSource;
 import com.py.utils.ApplicationContextUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -71,7 +72,7 @@ public class CustomerRealm extends AuthorizingRealm {
         if(!ObjectUtils.isEmpty(user)){
             //返回数据库信息
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(),
-                    ByteSource.Util.bytes(user.getSalt()), this.getName());
+                    new MyByteSource(user.getSalt()), this.getName());
             return simpleAuthenticationInfo;
         }
 

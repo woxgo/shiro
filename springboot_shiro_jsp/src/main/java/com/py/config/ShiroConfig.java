@@ -1,5 +1,6 @@
 package com.py.config;
 
+import com.py.cache.RedisCacheManager;
 import com.py.shiro.realms.CustomerRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -70,12 +71,13 @@ public class ShiroConfig {
         customerRealm.setCredentialsMatcher(credentialsMatcher);
 
         //开启缓存管理器
-        customerRealm.setCacheManager(new EhCacheManager());
+        // customerRealm.setCacheManager(new EhCacheManager());
+        customerRealm.setCacheManager(new RedisCacheManager());
         customerRealm.setCachingEnabled(true);//开启全局缓存
         customerRealm.setAuthenticationCachingEnabled(true);//开启认证缓存
-        customerRealm.setAuthenticationCacheName("authenticationCache");//可以指定缓存名称
+        customerRealm.setAuthenticationCacheName("11authenticationCache");//可以指定缓存名称
         customerRealm.setAuthorizationCachingEnabled(true);//开启授权缓存
-        customerRealm.setAuthorizationCacheName("authorizationCache");//可以指定缓存名称
+        customerRealm.setAuthorizationCacheName("22authorizationCache");//这个没生效 缓存名称为com.py.shiro.realms.CustomerRealm.authorizationCache
 
         return customerRealm;
     }
