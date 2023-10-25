@@ -32,6 +32,7 @@ public class ShiroConfig {
         map.put("/user/login","anon");//anon 设置为公共资源
         map.put("/user/register","anon");
         map.put("/register.jsp","anon");
+        map.put("/user/getImage","anon");//验证码
 
 
 
