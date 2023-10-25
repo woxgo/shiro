@@ -2,6 +2,7 @@ package com.py.config;
 
 import com.py.shiro.realms.CustomerRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -67,6 +68,15 @@ public class ShiroConfig {
         //设置散列次数
         credentialsMatcher.setHashIterations(1024);
         customerRealm.setCredentialsMatcher(credentialsMatcher);
+
+        //开启缓存管理器
+        customerRealm.setCacheManager(new EhCacheManager());
+        customerRealm.setCachingEnabled(true);//开启全局缓存
+        customerRealm.setAuthenticationCachingEnabled(true);//开启认证缓存
+        customerRealm.setAuthenticationCacheName("authenticationCache");//可以指定缓存名称
+        customerRealm.setAuthorizationCachingEnabled(true);//开启授权缓存
+        customerRealm.setAuthorizationCacheName("authorizationCache");//可以指定缓存名称
+
         return customerRealm;
     }
 }
